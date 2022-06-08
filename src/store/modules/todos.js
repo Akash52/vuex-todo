@@ -1,8 +1,26 @@
 const state = {
-  todos: []
+  todos: [
+    {
+      id: 1,
+      title: 'Learn Vue',
+      completed: false
+    },
+    {
+      id: 2,
+      title: 'Learn Vuex',
+      completed: true
+    },
+    {
+      id: 3,
+      title: 'Learn Vue Router',
+      completed: false
+    }
+  ]
 }
 
-const getters = {}
+const getters = {
+  todos: (state) => state.todos
+}
 
 const actions = {}
 

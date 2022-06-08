@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>Home</h1>
-    <p>This is the Home page.</p>
+    <TodosComp />
   </div>
 </template>
 
 <script>
-export default {}
+import TodosComp from '@/components/TodosComp.vue'
+export default { components: { TodosComp } }
 </script>
 
 <style></style>
