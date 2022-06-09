@@ -28,11 +28,34 @@ const actions = {
     const response = await fetch('https://jsonplaceholder.typicode.com/todos')
     const todos = await response.json()
     commit('setTodos', todos)
+  },
+  // eslint-disable-next-line space-before-function-paren
+  async addTodo({ commit }, title) {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ title, completed: false })
+    })
+    const todo = await response.json()
+
+    commit('addTodo', todo.title)
+  },
+  // eslint-disable-next-line space-before-function-paren
+  async deleteTodo({ commit }, id) {
+    await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+      method: 'DELETE'
+    })
+    commit('deleteTodo', id)
   }
 }
 
 const mutations = {
-  setTodos: (state, todos) => (state.todos = todos)
+  setTodos: (state, todos) => (state.todos = todos),
+  addTodo: (state, todo) => state.todos.unshift(todo),
+  deleteTodo: (state, id) =>
+    (state.todos = state.todos.filter((todo) => todo.id !== id))
 }
 
 export default {

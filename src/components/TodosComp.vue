@@ -16,7 +16,7 @@
           {{ todo.title }}
           <button
             class="font-bold py-2 px-4 rounded-full"
-            @click="removeTodo(todo.id)"
+            @click="deleteTodo(todo.id)"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@ import { mapGetters, mapActions } from 'vuex'
 import AddTodo from './AddTodo.vue'
 export default {
   methods: {
-    ...mapActions(['fetchTodos'])
+    ...mapActions(['fetchTodos', 'deleteTodo'])
   },
   // eslint-disable-next-line space-before-function-paren
   computed: {
