@@ -3,11 +3,12 @@
     Todo App
   </h1>
   <div
-    class="max-w-5xl flex justify-center mx-auto container px-4 sm:px-6 lg:px-8 mt-8"
+    class="max-w-5xl flex flex-col justify-center mx-auto container px-4 sm:px-6 lg:px-8 mt-8"
   >
     <ul
       class="bg-gray-900 p-4 mx-auto container rounded-md shadow shadow-indigo-500"
     >
+      <AddTodo />
       <li v-for="todo in todos.slice(0, 5)" :key="todo.id">
         <div
           class="flex justify-between bg-slate-800 m-1 p-2 items-center rounded-md transition duration-500 transform hover:opacity-75 cursor-pointer"
@@ -40,6 +41,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import AddTodo from './AddTodo.vue'
 export default {
   methods: {
     ...mapActions(['fetchTodos'])
@@ -53,9 +55,9 @@ export default {
   // eslint-disable-next-line space-before-function-paren
   created() {
     this.fetchTodos()
-  }
-
+  },
   // eslint-disable-next-line space-before-function-paren
+  components: { AddTodo }
 }
 </script>
 
