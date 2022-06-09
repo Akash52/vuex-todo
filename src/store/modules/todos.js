@@ -22,9 +22,18 @@ const getters = {
   todos: (state) => state.todos
 }
 
-const actions = {}
+const actions = {
+  // eslint-disable-next-line space-before-function-paren
+  async fetchTodos({ commit }) {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+    const todos = await response.json()
+    commit('setTodos', todos)
+  }
+}
 
-const mutations = {}
+const mutations = {
+  setTodos: (state, todos) => (state.todos = todos)
+}
 
 export default {
   state,
