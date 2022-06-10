@@ -58,6 +58,21 @@ const actions = {
     )
     const todos = await response.json()
     commit('setTodos', todos)
+  },
+  // eslint-disable-next-line space-before-function-paren
+  async updateTodo({ commit }, updatedTodo) {
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/todos/${updatedTodo.id}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedTodo)
+      }
+    )
+    const todo = await response.json()
+    commit('updateTodo', todo)
   }
 }
 
@@ -65,7 +80,11 @@ const mutations = {
   setTodos: (state, todos) => (state.todos = todos),
   addTodo: (state, todo) => state.todos.unshift(todo),
   deleteTodo: (state, id) =>
-    (state.todos = state.todos.filter((todo) => todo.id !== id))
+    (state.todos = state.todos.filter((todo) => todo.id !== id)),
+  updateTodo: (state, todo) => {
+    const index = state.todos.findIndex((t) => t.id === todo.id)
+    state.todos.splice(index, 1, todo)
+  }
 }
 
 export default {

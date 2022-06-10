@@ -12,7 +12,14 @@
       <filter-todos />
       <li v-for="todo in todos.slice(0, 20)" :key="todo.id">
         <div
-          class="flex justify-between bg-slate-800 m-1 p-2 items-center rounded-md transition duration-500 transform hover:opacity-75 cursor-pointer"
+          @dblclick="editTodo(todo)"
+          :class="[
+            todo.completed
+              ? 'bg-slate-800 text-gray-400 line-through'
+              : 'text-gray-100',
+            'block px-4 py-2 text-sm',
+            'flex justify-between bg-slate-800 m-1 p-2 items-center rounded-md transition duration-500 transform hover:opacity-75 cursor-pointer'
+          ]"
         >
           {{ todo.title }}
           <button
@@ -47,7 +54,17 @@ import FilterTodos from './FilterTodos.vue'
 
 export default {
   methods: {
-    ...mapActions(['fetchTodos', 'deleteTodo'])
+    ...mapActions(['fetchTodos', 'deleteTodo', 'updateTodo']),
+
+    // eslint-disable-next-line space-before-function-paren
+    editTodo(todo) {
+      const updatedTodo = {
+        id: todo.id,
+        title: todo.title,
+        completed: !todo.completed
+      }
+      this.updateTodo(updatedTodo)
+    }
   },
   // eslint-disable-next-line space-before-function-paren
   computed: {
