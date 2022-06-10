@@ -9,7 +9,8 @@
       class="bg-gray-900 p-4 mx-auto container rounded-md shadow shadow-indigo-500"
     >
       <AddTodo />
-      <li v-for="todo in todos.slice(0, 5)" :key="todo.id">
+      <filter-todos />
+      <li v-for="todo in todos.slice(0, 20)" :key="todo.id">
         <div
           class="flex justify-between bg-slate-800 m-1 p-2 items-center rounded-md transition duration-500 transform hover:opacity-75 cursor-pointer"
         >
@@ -42,6 +43,8 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import AddTodo from './AddTodo.vue'
+import FilterTodos from './FilterTodos.vue'
+
 export default {
   methods: {
     ...mapActions(['fetchTodos', 'deleteTodo'])
@@ -57,7 +60,7 @@ export default {
     this.fetchTodos()
   },
   // eslint-disable-next-line space-before-function-paren
-  components: { AddTodo }
+  components: { AddTodo, FilterTodos }
 }
 </script>
 

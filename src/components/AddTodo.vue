@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="onSubmit">
-    <div class="relative z-0 w-full mb-6 group flex">
+    <div class="relative z-0 w-full mb-2 group flex">
       <input
         type="text"
         name="floating_todo"

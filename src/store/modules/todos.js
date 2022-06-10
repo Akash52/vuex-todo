@@ -48,6 +48,16 @@ const actions = {
       method: 'DELETE'
     })
     commit('deleteTodo', id)
+  },
+  // eslint-disable-next-line space-before-function-paren
+  async filterTodos({ commit }, e) {
+    const limit = parseInt(e.target.value)
+
+    const response = await fetch(
+      'https://jsonplaceholder.typicode.com/todos?_limit=' + limit
+    )
+    const todos = await response.json()
+    commit('setTodos', todos)
   }
 }
 
